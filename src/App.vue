@@ -1,28 +1,32 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <BarraNavegacion @tipoMapa="cambiarTipoMapa" />
+    <DibujoMapa :tipoMapa="tipoMapa"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import BarraNavegacion from "./components/BarraNavegacion.vue"
+import DibujoMapa from "./components/DibujoMapa.vue"
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    DibujoMapa, BarraNavegacion
+  },
+  methods: {
+    cambiarTipoMapa: function(url){
+      this.tipoMapa = url;
+    }
+  },
+  data: function(){
+    return{
+      tipoMapa: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+    }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  @import "./assets/css/App.css"
 </style>
